@@ -7,13 +7,15 @@ if [ -n "$MODULESHOME" ]; then
 fi
 
 # Define params
-MEM=16
 SAMPLES=samples_prefix.csv
 INFOLDER=input
 ASM=assembly
 
-# Ensure parent output directory
-mkdir -p $ASM
+# Determine memory
+MEM=$3
+if [ ! $MEM ]; then
+  MEM=16
+fi
 
 # Determine num CPUs
 CPU=$SLURM_CPUS_ON_NODE
@@ -33,6 +35,9 @@ if [ ! $N ]; then
         exit
     fi
 fi
+
+# Ensure parent output directory
+mkdir -p $ASM
 
 # Determine input data from job index
 IFS=,
