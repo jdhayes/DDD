@@ -44,8 +44,8 @@ tail -n +2 $SAMPLES | sed -n ${N}p | while read SPECIES STRAIN JGILIBRARY BIOSAM
   echo "OUTPUT:\n\t${OUTFOLDER}"
   
   # Run spades with either --meta or --plasmid
-  if [[ -d $OUTFOLDER ]]; then
-    if [[ ! -f $OUTFOLDER/scaffolds.fasta ]]; then
+  if [ -d $OUTFOLDER ]; then
+    if [ ! -f $OUTFOLDER/scaffolds.fasta ]; then
         echo "Restarting spades.py --plasmid -o $OUTFOLDER"
         time spades.py --threads $CPU -o $OUTFOLDER --restart-from last
     fi
@@ -55,7 +55,7 @@ tail -n +2 $SAMPLES | sed -n ${N}p | while read SPECIES STRAIN JGILIBRARY BIOSAM
   fi
 
   # Clean up and compress
-  if [ -f $OUTFOLDER/scaffolds.fasta ]; then
+  if [ -f $OUTFOLDER/scaffolds.fasta ] && [ -f $OUTFOLDER/spades.log ]; then
     echo "Cleaning..."
     rm -rf $OUTFOLDER/before_rr.fasta $OUTFOLDER/corrected $OUTFOLDER/K*
     rm -rf $OUTFOLDER/assembly_graph_after_simplification.gfa $OUTFOLDER/tmp
