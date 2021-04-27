@@ -16,7 +16,7 @@ while not q.empty():
   if item is not None:
     itemstr = item.decode("utf-8")
     print("Working on " + itemstr)
-    os.system("conda run --no-capture-output -n myenv bash ./pipeline/assemble/02_plasmidspades.sh %(ARRAY_ID)s %(CPU)s" % {'ARRAY_ID':itemstr,'CPU':16})
+    os.system("conda run --no-capture-output -n myenv bash ./pipeline/assemble/02_plasmidspades.sh %(ARRAY_ID)s %(CPU)s %(MEM)s" % {'ARRAY_ID':itemstr,'CPU':16,'MEM':16})
     q.complete(item)
   else:
     print("Waiting for work")
