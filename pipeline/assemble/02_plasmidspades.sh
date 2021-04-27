@@ -14,7 +14,7 @@ ASM=assembly
 # Determine memory
 MEM=$3
 if [ ! $MEM ]; then
-  MEM=16
+  MEM=64
 fi
 
 # Determine num CPUs
