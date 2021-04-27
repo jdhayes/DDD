@@ -47,7 +47,7 @@ tail -n +2 $SAMPLES | sed -n ${N}p | while read SPECIES STRAIN JGILIBRARY BIOSAM
   if [ -d $OUTFOLDER ]; then
     if [ ! -f $OUTFOLDER/scaffolds.fasta ]; then
         echo "Restarting spades.py --plasmid -o $OUTFOLDER"
-        time spades.py --threads $CPU -o $OUTFOLDER --restart-from last
+        time spades.py --threads $CPU -m $MEM -o $OUTFOLDER --restart-from last
     fi
   else
       echo "Running spades.py --plasmid --threads $CPU -m $MEM -1 ${INFOLDER}/${STEM}_R1.fq.gz -2 ${INFOLDER}/${STEM}_R2.fq.gz -o $OUTFOLDER"
